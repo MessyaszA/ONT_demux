@@ -12,7 +12,7 @@ process NANOPLOT {
         overwrite: true,
         saveAs: { filename -> filename }
     
-    container "staphb/nanoplot:1.33.0"
+    container "staphb/nanoplot:1.41.6"
 
     input:
         tuple val(meta), path(reads)
