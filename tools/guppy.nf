@@ -22,8 +22,7 @@ process GUPPY_DEMUX {
             -r \\
             --save_path . \\
             --records_per_fastq 0 \\
-            $barcode_kit \\
-            $gpu_opts
+            $barcode_kit 
             
         # have to combine fastqs
         mkdir fastq
