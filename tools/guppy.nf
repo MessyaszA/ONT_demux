@@ -6,6 +6,8 @@ nextflow.enable.dsl = 2
 process GUPPY_DEMUX {
     label 'process_overkill'
 
+    container 'genomicpariscentre/guppy:latest'
+
     input:
         path reads
 
