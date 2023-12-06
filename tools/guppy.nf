@@ -4,13 +4,7 @@ nextflow.enable.dsl = 2
 
 // Process definition
 process GUPPY_DEMUX {
-    label 'process_high'
-
-    if (params.gpu_active){
-        container 'genomicpariscentre/guppy-gpu:latest'
-    } else {
-        container 'genomicpariscentre/guppy:latest'
-    }
+    label 'process_overkill'
 
     input:
         path reads
@@ -21,11 +15,6 @@ process GUPPY_DEMUX {
 
     script:
         barcode_kit=params.barcode_kit ? "--barcode_kits '$params.barcode_kit'": ""
-        if (params.gpu_active){
-            gpu_opts = "-x cuda:all:100%"
-        } else {
-            gpu_opts = ""
-        }
         """
         guppy_barcoder --help
         guppy_barcoder --print_kits
