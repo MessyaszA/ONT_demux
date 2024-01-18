@@ -20,12 +20,12 @@ When executing the pipeline, you can utilize the ```-profile docker``` or ```-pr
 Full local execution is not recommended. If you are to do this, you must first install each individual tool per the developer's recommendations and ensure it is included in your PATH. Good luck...
 
 ## Metadata
-Successful execution of this pipeline requires an accurate metadata table. This is a comma-delimited file (.csv) that contains the appropriate paths and sample names for the pipeline ingress. Examples can be found at [within the documentation](https://github.com/alemenze/bact-builder/tree/main/docs/metadata_examples). For this example, we will demonstrate making a table purely via command line, and will be demonstrating a full pipeline execution for a singular sample. If you are using a subset workflow, please ensure the metadata table contains the appropriate columns. 
+Successful execution of this pipeline requires an accurate metadata table. This is a comma-delimited file (.csv) that contains the appropriate paths and sample names for the pipeline ingress. An example can be found [within the documentation](https://github.com/MessyaszA/ONT_demux/blob/main/docs/example_metadata.csv). For this example, we will demonstrate making a table purely via command line, and will be demonstrating a full pipeline execution for a singular sample. If you are using a subset workflow, please ensure the metadata table contains the appropriate columns. 
 
 ```bash
 touch metadata_example.csv
-echo "sample_id,fast5_dir,fast5_dirname,ont_barcode,illumina_r1,illumina_r2" >> metadata_example.csv
-echo "ExampleSample,/projectdir/MyFolder/ONT_Data/Run1/,Run1,barcode05,/projectdir/MyFolder/IlluminaData/ExampleSample_R1.fastq.gz,/projectdir/MyFolder/IlluminaData/ExampleSample_R2.fastq.gz" >> metadata_example.csv
+echo "sample_id,fast5_dir,fast5_dirname,ont_barcode" >> metadata_example.csv
+echo "ExampleSample,/projectdir/MyFolder/ONT_Data/Run1/,Run1,barcode05" >> metadata_example.csv
 ```
 
 ## Pipeline Execution
