@@ -13,7 +13,7 @@ Setting up this pipeline for execution involves establishing an appropriate meta
 Follow traditional naming restrictions- IE dont use special characters, spaces etc.
 
 ## Summary Features:
-* Basecalling with Dorado
-* Demultiplexing (barcodes) with Guppy
-* Sample and trimming QC with pycoQC, fastp, NanoPlot, and Chopper
-* Predictive QC and contaminant detection with Kraken2
+* Basecalling with [dorado](https://github.com/nanoporetech/dorado)
+* Demultiplexing (barcoding) with [guppy](https://community.nanoporetech.com/protocols/Guppy-protocol/v/gpb_2003_v1_revt_14dec2018)
+* Sample and trimming QC with [pycoQC](https://adrienleger.com/pycoQC/), [fastp](https://github.com/OpenGene/fastp), [NanoPlot](https://github.com/wdecoster/NanoPlot), and [Chopper](https://github.com/wdecoster/chopper).
+* Predictive QC and contaminant detection with [Kraken2](https://ccb.jhu.edu/software/kraken2/)
