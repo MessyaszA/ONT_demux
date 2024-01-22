@@ -1,2 +1,5 @@
 sample_id,fast5_dir,fast5_dirname,ont_barcode
 MTb1,/path/to/*.f5,fast5s,barcode01
+MTb2,/path/to/*.f5,fast5s,barcode02
+MTb3,/path/to/*.f5,fast5s,barcode03
+MTb4,/path/to/*.f5,fast5s,barcode04
