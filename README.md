@@ -7,11 +7,6 @@ Demultiplex and quality filter workflow for ONT sequences
 ## Description
 This workflow is built to provide a comprehensive workflow for basecalling and demultiplexing ONT sequence data, including quality filtering and multiple quality checks and contaminant detection.
 
-## Metadata
-Setting up this pipeline for execution involves establishing an appropriate metadata file. This is a csv file that enables parsing the files correctly together and labelling samples appropriately.
-
-Follow traditional naming restrictions- IE dont use special characters, spaces etc.
-
 ## Execution Tutorial
 A tutorial on executing ONT_demux can be [found here](https://github.com/MessyaszA/ONT_demux/blob/main/docs/execution_tutorial.md).
 
