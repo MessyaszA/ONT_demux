@@ -60,7 +60,7 @@ workflow Demux {
       .flatten()
       .map{ it -> tuple(it.baseName, it) } //bc, bc_dir
 
-    ch_demuxed = ont_metadata.join(ch_ont_fastq, by: [0])//bc, id with bc, bc_dir become bc, id, bic_dir
+    ch_demuxed = ont_metadata.join(ch_ont_fastq, by: [0])//bc, id with bc, bc_dir become bc, id, bc_dir
     ch_demuxed_filtered = ch_demuxed
        .map{ it -> tuple(it[1], it[2]) } //And end as id, bc_dir
        //.subscribe { println it }
