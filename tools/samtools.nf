@@ -5,7 +5,7 @@ nextflow.enable.dsl = 2
 process SAMTOOLS_SORT {
     label 'process_high'
 
-    container "staphb/samtools:latest"
+    container "staphb/samtools:1.18"
 
     input:
         path(reads)
