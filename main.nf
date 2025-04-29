@@ -22,6 +22,7 @@ def helpMessage(){
         --samplesheet               CSV file with information on the samples (see example)
         --model                     Specify basecalling model - choose based on flowcell and kit.
         --barcode_kit               Barcode kit used for multiplexing with ONT.
+        --outdir                    Directory for output directories/files
         -profile                    Currently available for docker (local), singularity (HPC local), slurm (HPC multi node) and GCP (requires credentials)
 
     Mandatory Bracken parameters:
@@ -50,10 +51,7 @@ def helpMessage(){
         --max_length                Sets a maximum read length. Defaults to 1690.
         --min_q                     Minimum quality score for bases for filtlong. Defaults to 10.
         --head_crop                 Trim N nucleotides from the start of a read. Defaults to 50.
-        --contam                    Fasta file with reference to check potential contaminants against. Defaults to None. 
-
-    Optional:
-        --outdir                    Directory for output directories/files. Defaults to 'projectDir/results' 
+        --contam                    Fasta file with reference to check potential contaminants against. Defaults to None.  
 
     Slurm Controller:
         --node_partition            Specify the node partition in use for slurm executor. Defaults to 'p_lemenzad_1' 
