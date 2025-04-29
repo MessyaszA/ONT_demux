@@ -13,6 +13,9 @@ nextflow.enable.dsl = 2
 include { Kraken2_db_build } from '../tools/kraken'
 include { Kraken2 } from '../tools/kraken'
 include { Krona } from '../tools/kraken'
+include { BRACKEN } from '../tools/bracken'
+include { Krona_bracken } from '../tools/bracken'
+include { TAXPASTA } from '../tools/taxpasta' 
 
 ////////////////////////////////////////////////////
 /* --           RUN MAIN WORKFLOW              -- */
@@ -37,5 +40,19 @@ workflow Kraken {
 
         Krona(
             Kraken2.out.kraken2krona
+        )
+
+        BRACKEN(
+            Kraken2.out.report,
+            params.bracken_db
+        )
+
+
+        Krona_bracken(
+            BRACKEN.out.brack_report
+        )
+
+        TAXPASTA(
+            BRACKEN.out.tsv.collect()
         )
 }

@@ -13,7 +13,7 @@ process FASTP_QC_HTML {
         overwrite: true,
         saveAs: { filename -> filename }
 
-    container "biocontainers/fastp:v0.20.1_cv1"
+    container "quay.io/biocontainers/fastp:0.24.0--heae3180_1"
 
     input:
         tuple val(meta), path(reads)

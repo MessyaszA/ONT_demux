@@ -14,7 +14,6 @@ include {POD5_CONVERT} from '../tools/pod5'
 include {DORADO_BASECALL} from '../tools/dorado'
 include {SAMTOOLS_SORT} from '../tools/samtools'
 include {GUPPY_DEMUX} from '../tools/guppy'
-include {PYCO_QC} from '../tools/pycoqc'
 include {CHOPPER_FILT} from '../tools/chopper'
 include {FASTP_QC_HTML} from '../tools/fastp_html'
 include {FASTP_QC_HTML as FASTP_QC_HTML_TRIMMED} from '../tools/fastp_html'
@@ -50,17 +49,12 @@ workflow Demux {
       SAMTOOLS_SORT.out.bam
     )
 
-    PYCO_QC(
-      DORADO_BASECALL.out.tsv,
-      GUPPY_DEMUX.out.sequencing_summary
-    )
-
     ch_ont_fastq = Channel.empty()
     ch_ont_fastq = GUPPY_DEMUX.out.fastq
       .flatten()
       .map{ it -> tuple(it.baseName, it) } //bc, bc_dir
 
-    ch_demuxed = ont_metadata.join(ch_ont_fastq, by: [0])//bc, id with bc, bc_dir become bc, id, bc_dir
+    ch_demuxed = ont_metadata.join(ch_ont_fastq, by: [0])//bc, id with bc, bc_dir become bc, id, bic_dir
     ch_demuxed_filtered = ch_demuxed
        .map{ it -> tuple(it[1], it[2]) } //And end as id, bc_dir
        //.subscribe { println it }

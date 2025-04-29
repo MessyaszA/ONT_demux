@@ -3,7 +3,7 @@
 nextflow.enable.dsl = 2
 
 process DORADO_BASECALL {
-    container "genomicpariscentre/dorado:0.4.1"
+    container "genomicpariscentre/dorado:0.9.1"
 
     input:
         path(reads)
