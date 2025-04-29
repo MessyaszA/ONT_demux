@@ -54,8 +54,8 @@ def helpMessage(){
         --contam                    Fasta file with reference to check potential contaminants against. Defaults to None.  
 
     Slurm Controller:
-        --node_partition            Specify the node partition in use for slurm executor. Defaults to 'p_lemenzad_1' 
-        --gpu_node_partition        Specify the node for GPU access. Defaults to 'p_lemenzad_1'
+        --node_partition            Specify the node partition in use for slurm executor.  
+        --gpu_node_partition        Specify the node for GPU access.
         --gpu_clusterOptions        Specify GPU node options. Defaults to "--gres=gpu:1" for dev cluster constraints. 
     """
 
