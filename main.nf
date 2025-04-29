@@ -20,38 +20,42 @@ def helpMessage(){
 
     Mandatory for full workflow:
         --samplesheet               CSV file with information on the samples (see example)
+        --model                     Specify basecalling model - choose based on flowcell and kit.
+        --barcode_kit               Barcode kit used for multiplexing with ONT.
+        --outdir                    Directory for output directories/files
         -profile                    Currently available for docker (local), singularity (HPC local), slurm (HPC multi node) and GCP (requires credentials)
+
+    Mandatory Bracken parameters:
+        --bracken_db                Pre-built bracken database for estimating taxonomic abundance
+        --kraken_db_tax             NCBI Taxonomy database with organism names and phylogenetic hierarchy of each taxon, i.e. the "taxdump" folder created from a kraken/bracken db.
+        --read_len                  The read length to estimate taxonomic abundance. If using a bracken db built with a specific read length, then use this read length here. 
     
     POD5 conversion parameters:
         --one-to-one                Convert each fast5 to its relative converted output. The output files are written into the output directory at paths relatve to the path given to the --one-to-one argument. Note: This path must be a relative parent to all input paths.
     
-    Dorado parameters:
-        --model                     Specify basecalling model - choose based on flowcell and kit. Defaults to 'dna_r9.4.1_e8_hac@v3.3'
+    Dorado parameters: 
         --modified-bases            Call basecalling modifications. Refer to the models https://github.com/nanoporetech/dorado#modified-base-models
     
-    Guppy parameters:
-        --barcode_kit               Barcode kit used for multiplexing with ONT. 
+    Guppy parameters: 
         --gpu_active                Default: false. Activates use of GPUs
         --gpus                      Number of GPUs to use. Requires GPUs to use. Defaults to 0
         --cpus                      Number of CPUs to use. Defaults to 2
         --threads                   Number of threads per CPU to use. Defaults to 20
 
-    Kraken QC:
+    Kraken options:
         --kraken_db                 Default: Standard DB k2_standard_20230605.tar.gz. More up to date db can be found https://benlangmead.github.io/aws-indexes/k2
+        --kraken_tax_level          Lowest taxonomic level for estimating abundance. Defaults to species 'S'
 
     Chopper filtering parameters:
         --min_length                Minimum length of reads for filtlong. Defaults to 1000.
         --max_length                Sets a maximum read length. Defaults to 1690.
         --min_q                     Minimum quality score for bases for filtlong. Defaults to 10.
         --head_crop                 Trim N nucleotides from the start of a read. Defaults to 50.
-        --contam                    Fasta file with reference to check potential contaminants against. Defaults to None. 
-
-    Optional:
-        --outdir                    Directory for output directories/files. Defaults to 'projectDir/results' 
+        --contam                    Fasta file with reference to check potential contaminants against. Defaults to None.  
 
     Slurm Controller:
-        --node_partition            Specify the node partition in use for slurm executor. Defaults to 'p_lemenzad_1' 
-        --gpu_node_partition        Specify the node for GPU access. Defaults to 'p_lemenzad_1'
+        --node_partition            Specify the node partition in use for slurm executor.  
+        --gpu_node_partition        Specify the node for GPU access.
         --gpu_clusterOptions        Specify GPU node options. Defaults to "--gres=gpu:1" for dev cluster constraints. 
     """
 
