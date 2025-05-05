@@ -1,0 +1,5 @@
+sample_id,fastq_dir
+MTb1,/path/to/*.fastq.gz
+MTb2,/path/to/*.fastq.gz
+MTb3,/path/to/*.fastq.gz
+MTb4,/path/to/*.fastq.gz
