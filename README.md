@@ -15,5 +15,5 @@ A tutorial on executing ONT_demux can be [found here](https://github.com/Messyas
 * Demultiplexing (barcoding) with [guppy](https://community.nanoporetech.com/protocols/Guppy-protocol/v/gpb_2003_v1_revt_14dec2018)
 * Sample and trimming QC with [pycoQC](https://adrienleger.com/pycoQC/), [fastp](https://github.com/OpenGene/fastp), [NanoPlot](https://github.com/wdecoster/NanoPlot), and [Chopper](https://github.com/wdecoster/chopper).
 * Predictive QC and contaminant detection with [Kraken2](https://ccb.jhu.edu/software/kraken2/)
-* Taxonomic classfication and abundance estimation with [Bracken] (https://ccb.jhu.edu/software/bracken/index.shtml?t=manual)
-* Taxonomy abudance prep for secondary analysis with [Taxpasta] (https://taxpasta.readthedocs.io/en/latest/#about)
+* Taxonomic classfication and abundance estimation with [Bracken](https://ccb.jhu.edu/software/bracken/index.shtml?t=manual)
+* Taxonomy abudance prep for secondary analysis with [Taxpasta](https://taxpasta.readthedocs.io/en/latest/#about)
