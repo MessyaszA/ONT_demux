@@ -34,8 +34,7 @@ workflow Kraken {
 
         Kraken2(
             reads,
-            Kraken2_db_build.out.kraken2_ch,
-            'single'
+            Kraken2_db_build.out.kraken2_ch
         )
 
         Krona(

@@ -19,7 +19,7 @@ def helpMessage(){
         -profile singularity
 
     Mandatory for full workflow:
-        --samplesheet               CSV file with information on the samples (see example)
+        --samplesheet               CSV file with information on the samples (see examples)
         --model                     Specify basecalling model - choose based on flowcell and kit.
         --barcode_kit               Barcode kit used for multiplexing with ONT.
         --outdir                    Directory for output directories/files
@@ -51,7 +51,10 @@ def helpMessage(){
         --max_length                Sets a maximum read length. Defaults to 1690.
         --min_q                     Minimum quality score for bases for filtlong. Defaults to 10.
         --head_crop                 Trim N nucleotides from the start of a read. Defaults to 50.
-        --contam                    Fasta file with reference to check potential contaminants against. Defaults to None.  
+        --contam                    Fasta file with reference to check potential contaminants against. Defaults to None. 
+
+    Workflow control:
+        --skip_demux                Defaults to false. If true, it will skip the demultiplexing step. This requires a different input metadata sheet (see examples). 
 
     Slurm Controller:
         --node_partition            Specify the node partition in use for slurm executor.  
@@ -73,7 +76,7 @@ if (params.help) {
 if (params.samplesheet) {file(params.samplesheet, checkIfExists: true)} else { exit 1, 'Samplesheet file not specified!'}
 
 //Full Workflow Params
-{
+if (!params.skip_demux){
     Channel
         .fromPath(params.samplesheet)
         .splitCsv(header:true)
@@ -85,6 +88,15 @@ if (params.samplesheet) {file(params.samplesheet, checkIfExists: true)} else { e
         .fromPath(params.samplesheet)
         .splitCsv(header:true)
         .map{ row -> tuple(row.ont_barcode, row.sample_id)}
+        .set { ont_metadata }
+}
+
+//Skip Demux
+if (params.skip_demux){
+    Channel
+        .fromPath(params.samplesheet)
+        .splitCsv(header:true)
+        .map{ row -> tuple(row.sample_id, file(row.fastq_dir))}
         .set { ont_metadata }
 }
 
@@ -100,7 +112,7 @@ include { Kraken } from './subworkflows/kraken_full'
 
 workflow {
     //Full Workflow
-    {
+    if (!params.skip_demux){
         Demux_Full(
             guppy_dirs,
             ont_metadata
@@ -108,6 +120,14 @@ workflow {
 
         Kraken(
             Demux_Full.out,
+            'Kraken'
+        )
+        }
+
+    //Skip Demux
+    if (params.skip_demux){
+        Kraken(
+            ont_metadata,
             'Kraken'
         )
         }

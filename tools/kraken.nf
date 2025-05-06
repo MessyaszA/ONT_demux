@@ -19,7 +19,6 @@ process Kraken2 {
     input:
         tuple val(meta), path(reads)
         path(db)
-        val(read_type)
 
     output:
         tuple val(meta), path("*kraken2.krona"), emit: kraken2krona
@@ -27,14 +26,8 @@ process Kraken2 {
         path ("*_kraken2.output"), emit: kraken_output
 
     script:
-        if (read_type=='single') {
-            input="$reads"
-        }
-        if (read_type=='paired') {
-            input="--paired ${reads[0]} ${reads[1]}"
-        }
         """
-        kraken2 -db $db --report ${meta}_kraken2.report $input > ${meta}_kraken2.output
+        kraken2 -db $db --report ${meta}_kraken2.report $reads > ${meta}_kraken2.output
         cut -f 2,3 ${meta}_kraken2.output > ${meta}_kraken2.krona
         """
 }
