@@ -52,6 +52,7 @@ workflow Kraken {
         )
 
         TAXPASTA(
-            BRACKEN.out.tsv.collect()
+            BRACKEN.out.tsv.collect(),
+            params.kraken_db_tax
         )
 }

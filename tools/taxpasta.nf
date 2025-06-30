@@ -5,7 +5,7 @@ nextflow.enable.dsl = 2
 process TAXPASTA {
     label 'process_medium'
 
-    container "quay.io/biocontainers/taxpasta:0.6.1--pyhdfd78af_0"
+    container "quay.io/biocontainers/taxpasta:0.7.0--pyhdfd78af_0"
 
     publishDir "${params.outdir}/bracken_merged_tables/",
         mode: "copy",
@@ -14,6 +14,7 @@ process TAXPASTA {
 
     input:
         path reads
+        path(tax_db)
 
     output:
         path("*.biom"), emit: biom
@@ -21,7 +22,7 @@ process TAXPASTA {
 
     script:
     """
-    taxpasta merge $reads -p bracken --output-format BIOM -o biom_merge.biom --taxonomy $params.kraken_db_tax --add-lineage
-    taxpasta merge $reads -p bracken --output-format TSV -o tsv_merge.tsv --taxonomy $params.kraken_db_tax --add-lineage
+    taxpasta merge $reads -p bracken --output-format BIOM -o biom_merge.biom --taxonomy $tax_db --add-lineage
+    taxpasta merge $reads -p bracken --output-format TSV -o tsv_merge.tsv --taxonomy $tax_db --add-lineage
     """
 }
